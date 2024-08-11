@@ -9,7 +9,7 @@
 
 # if [ $UID -eq 0 ]
 #  then
-
+#
 sudo rm -rf /tmp/baseos 2>/dev/null
 sudo rm -rf /tmp/RHCSA_Training_2024 2>/dev/null
 
