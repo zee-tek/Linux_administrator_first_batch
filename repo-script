@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#if [ $UID -ne 0 ]
+
+# then
+
+#  echo "Please run it as root"
+#  exit 1
+
+# if [ $UID -eq 0 ]
+#  then
+
+sudo rm -rf /tmp/baseos 2>/dev/null
+sudo rm -rf /tmp/RHCSA_Training_2024 2>/dev/null
+
+mkdir /tmp/baseos
+cd /tmp
+printf 'yes' |git clone git@github.com:zee-tek/RHCSA_Training_2024.git
+sudo cp /tmp/RHCSA_Training_2024/httpd-2.4.57-11.el9_4.1.x86_64.rpm /tmp/baseos
+cd baseos
+sudo /usr/bin/createrepo .
+# fi
+
+
+#fi 
+   
