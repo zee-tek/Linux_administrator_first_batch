@@ -35,11 +35,11 @@ if [ `getent passwd "$user_name" |grep $user_name 2>/dev/null` ]\
 
 then
  
-  echo -e "Result: Pass\n"
+  echo -e "\nResult: Pass\n"
 
 else
 
-  echo -e "Result: Fail\n"
+  echo -e "\nResult: Fail\n"
 
 fi  
 
