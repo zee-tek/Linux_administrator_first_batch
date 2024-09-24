@@ -38,7 +38,7 @@ systemctl restart httpd &>/dev/null
 echo "RUNNING TASK 9 ......................."
 userdel -r linda &>/dev/null
 useradd linda &>/dev/null
-echo "welcome" |passwd --stdin linda &>/dev/null
+echo "redhat" |passwd --stdin linda &>/dev/null
 
 echo "RUNNING TASK 10 ......................"
 rm -rf /home/linda/web /tmp/files &>/dev/null
