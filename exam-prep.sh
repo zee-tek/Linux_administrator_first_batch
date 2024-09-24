@@ -17,7 +17,7 @@ echo "RUNNING TASK 3 ......................."
 systemctl start httpd &>/dev/null
 
 echo "RUNNING TASK 4 ......................."
-
+semanage port -d -t http_port_t 82 -p tcp &>/dev/null
 sed -i 's/^List.*/Listen 82/' /etc/httpd/conf/httpd.conf
 
 echo "RUNNING TASK 5 ......................."
@@ -43,7 +43,8 @@ echo "welcome" |passwd --stdin linda &>/dev/null
 echo "RUNNING TASK 10 ......................"
 rm -rf /home/linda/web /tmp/files &>/dev/null
 mkdir -p /home/linda/web/html
-mkdir /tmp/files
+touch /tmp/rh_file{1..10}.txt
+chown linda:linda /tmp/rh_file{1..10}.txt
 
 
 
