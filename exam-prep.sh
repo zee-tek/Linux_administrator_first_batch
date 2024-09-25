@@ -68,10 +68,10 @@ echo "Hello From myweb1 Container" >/home/linda/web/html/index.html
 echo
 echo -e "Exam Environment Setup Completed!\n"
 
-echo -e "Rebooting System.................."
-echo `openssl rand -base64 14`|passwd --stdin root &>/dev/null
+#echo -e "Rebooting System.................."
+#echo `openssl rand -base64 14`|passwd --stdin root &>/dev/null
 
-echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
+#echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
 
-shutdown -r now
+#shutdown -r now
 
