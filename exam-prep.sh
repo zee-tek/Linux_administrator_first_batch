@@ -55,6 +55,11 @@ dnf groupremove "RPM Development Tools" -y
 dnf remove autofs -y
 dnf remove chrony -y
 
+echo "RUNNING TASK 12 ......................"
+sed -i '/^\/-/d' /etc/auto.master &>/dev/null
+sed -i '/\/rhome/d' /etc/auto.master &>/dev/null
+sed -i '/\/home/d' /etc/auto.misc &>/dev/null
+
 
 echo "RUNNING Final Task ..................."
 echo "Practicing RHCSA9" > /web1/index.html
