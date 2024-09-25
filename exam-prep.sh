@@ -50,6 +50,10 @@ mkdir -p /home/linda/web/html
 touch /tmp/rh_file{1..10}.txt
 chown linda:linda /tmp/rh_file{1..10}.txt
 
+echo "RUNNING TASK 11 ......................"
+dnf groupremove "RPM Development Tools" -y
+dnf remove autofs -y
+dnf remove chrony -y
 
 
 echo "RUNNING Final Task ..................."
