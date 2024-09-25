@@ -51,14 +51,16 @@ touch /tmp/rh_file{1..10}.txt
 chown linda:linda /tmp/rh_file{1..10}.txt
 
 echo "RUNNING TASK 11 ......................"
-dnf groupremove "RPM Development Tools" -y
-dnf remove autofs -y
-dnf remove chrony -y
+dnf groupremove "RPM Development Tools" -y &>/dev/null
+dnf remove autofs -y &>/dev/null
+dnf remove chrony -y &>/dev/null
 
 echo "RUNNING TASK 12 ......................"
 sed -i '/^\/-/d' /etc/auto.master &>/dev/null
 sed -i '/\/rhome/d' /etc/auto.master &>/dev/null
 sed -i '/\/home/d' /etc/auto.misc &>/dev/null
+firewall-cmd --remove-port=82/tcp --permanent &>/dev/null
+firewall-cmd --reload &>/dev/null
 
 
 echo "RUNNING Final Task ..................."
