@@ -39,7 +39,7 @@ echo "RUNNING TASK 9 ......................."
 userdel -r linda &>/dev/null
 useradd linda &>/dev/null
 userdel -r john &>/dev/null
-useradd -u 3020 -b /rhome -M john &>/dev/null
+useradd -u 3020 -b /share -M john &>/dev/null
 
 echo "redhat" |passwd --stdin linda &>/dev/null
 echo "redhat" |passwd --stdin john &>/dev/null
@@ -47,6 +47,7 @@ echo "RUNNING TASK 10 ......................"
 mkdir /rhome &>/dev/null
 rm -rf /home/linda/web /tmp/files &>/dev/null
 mkdir -p /home/linda/web/html
+chown -R linda:linda /home/linda/web
 touch /tmp/rh_file{1..10}.txt
 chown linda:linda /tmp/rh_file{1..10}.txt
 
