@@ -1,3 +1,15 @@
+#!/bin/bash
+
+: ' This Script is Created to test following
+   - IP
+   - Repository
+   - Users
+  '
+
+
+
+
+
 ip_test=`nmcli con show enp0s3|grep ipv4.method|awk '{print $2}'`
 dnf repolist --enabled -q|egrep -v '^rhel|^repo'|grep -i app&>/dev/null
 app_chk=$?
