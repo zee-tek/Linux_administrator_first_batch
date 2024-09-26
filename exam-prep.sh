@@ -67,6 +67,7 @@ firewall-cmd --reload &>/dev/null
 echo "RUNNING Final Task ..................."
 echo "Practicing RHCSA9" > /web1/index.html
 echo "Hello From myweb1 Container" >/home/linda/web/html/index.html
+chown -R linda:linda /home/linda/web/html
 
 echo
 echo -e "Exam Environment Setup Completed!\n"
