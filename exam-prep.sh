@@ -19,7 +19,7 @@ systemctl start httpd &>/dev/null
 echo "RUNNING TASK 4 ......................."
 semanage port -d -t http_port_t 82 -p tcp &>/dev/null
 sed -i 's/^List.*/Listen 82/' /etc/httpd/conf/httpd.conf
-
+systemctl restart httpd &>/dev/null
 echo "RUNNING TASK 5 ......................."
 rm -rf /web1 &>/dev/null
 mkdir /web1
