@@ -8,7 +8,7 @@ if [ `id -u` != 0 ];then
 fi
 
 echo "RUNNING TASK 1 ......................."
-dnf remove httpd-core httpd -y -q &>/dev/null
+#dnf remove httpd-core httpd -y -q &>/dev/null
 echo "RUNNING TASK 2 ......................."
 
 dnf install httpd-core httpd -y -q &>/dev/null
