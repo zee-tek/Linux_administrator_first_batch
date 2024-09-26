@@ -36,6 +36,7 @@ echo "RUNNING TASK 8 ......................."
 systemctl restart httpd &>/dev/null
 
 echo "RUNNING TASK 9 ......................."
+mkdir /share &>/dev/null
 userdel -r linda &>/dev/null
 useradd linda &>/dev/null
 userdel -r john &>/dev/null
