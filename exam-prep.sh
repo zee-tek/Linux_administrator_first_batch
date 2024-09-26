@@ -50,7 +50,8 @@ mkdir -p /home/linda/web/html
 chown -R linda:linda /home/linda/web
 touch /tmp/rh_file{1..10}.txt
 chown linda:linda /tmp/rh_file{1..10}.txt
-
+rm -rf /home/linda/.config/systemd
+rm -rf /home/linda/.config/containers
 echo "RUNNING TASK 11 ......................"
 dnf groupremove "RPM Development Tools" -y &>/dev/null
 dnf remove autofs -y &>/dev/null
