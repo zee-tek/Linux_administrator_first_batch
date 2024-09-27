@@ -64,6 +64,10 @@ sed -i '/\/rhome/d' /etc/auto.master &>/dev/null
 sed -i '/\/home/d' /etc/auto.misc &>/dev/null
 firewall-cmd --remove-port=82/tcp --permanent &>/dev/null
 firewall-cmd --reload &>/dev/null
+dnf install tuned -y &>/dev/null
+systemctl start tuned &>/dev/null
+tuned-adm profile network-latency &>/dev/null 
+
 
 
 echo "RUNNING Final Task ..................."
