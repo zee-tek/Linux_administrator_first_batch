@@ -53,6 +53,10 @@ touch /tmp/rh_file{1..10}.txt
 chown linda:linda /tmp/rh_file{1..10}.txt
 rm -rf /home/linda/.config/systemd
 rm -rf /home/linda/.config/containers
+rm -rf /tmp/files
+mkdir /tmp/files
+rm -rf /var/tmp/linda
+mkdir  /var/tmp/linda
 echo "RUNNING TASK 11 ......................"
 dnf groupremove "RPM Development Tools" -y &>/dev/null
 dnf remove autofs -y &>/dev/null
@@ -74,7 +78,7 @@ echo "RUNNING Final Task ..................."
 echo "Practicing RHCSA9" > /web1/index.html
 echo "Hello From myweb1 Container" >/home/linda/web/html/index.html
 chown -R linda:linda /home/linda/web/html
-
+find / -iname containerfile -type f -print 2>/dev/null -exec rm -rf {} \;
 echo
 echo -e "Exam Environment Setup Completed!\n"
 
