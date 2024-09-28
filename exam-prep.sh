@@ -72,6 +72,14 @@ dnf install tuned -y &>/dev/null
 systemctl start tuned &>/dev/null
 tuned-adm profile network-latency &>/dev/null 
 
+echo "RUNNING TASK 13 ......................"
+
+su - student -c "podman stop myweb1" &>/dev/null
+su - student -c "podman rm myweb1" &>/dev/null
+su - student -c "podman rmi webimage" -f &>/dev/null
+su - student -c "rm -rf /home/student/.config/systemd/user/con*" &>/dev/null
+su - student -c "rm -rf /home/student/.config/systemd" &>/dev/null
+su - student -c "rm -rf /home/student/.config/containers" &>/dev/null
 
 
 echo "RUNNING Final Task ..................."
