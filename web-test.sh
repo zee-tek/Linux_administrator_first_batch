@@ -41,7 +41,7 @@ if [ "$selinux_chk" == "Practicing RHCSA9" ];then
 
 else
 
-    echo -e "\e[31m Fail: Selinux is good, WebSite hosting on VM is not accessible \e[0m\n"
+    echo -e "\e[31m Fail: Selinux WebSite hosting on VM is not accessible \e[0m\n"
 fi
 
 
@@ -78,4 +78,4 @@ else
 fi
 
 
-Author: Zeeshan Ali
+#Author: Zeeshan Ali
