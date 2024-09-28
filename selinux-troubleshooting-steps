@@ -1,0 +1,48 @@
+
+1. curl localhost
+
+2. check httpd status and try to start the service
+
+3. check port  related message in systemctl status httpd
+
+4. grep AVC /var/log/audit/audit.log |grep denied
+
+5. man semanage-port |grep http
+
+6. take the command and change port number and add into selinux
+
+7. verify port "semanage port -l |grep http"
+
+8. try to start the service
+
+9. if server started successfully, enable it too
+
+10. curl localhost:port-number
+
+11. If shows Default Page, then check logs and look for Document Root dir
+
+12. grep AVC /var/log/audit/audit.log |grep denied|grep path
+    tail /var/log/httpd/error_log
+
+13. Once you found the DocumentRoot dir and the web page file index.html
+
+14. Check their selinux file conext
+      Example:
+               ls -ldZ DocutmentRootDir
+               ls -lZ /DocutmentRootDir/index.html
+
+15. man semanage-fcontext |grep web
+
+16. use Both Commands from man page to change the file context of the DocumentRoot dir
+
+17. verify file context has been changed
+         ls -ldZ DocutmentRootDir
+         ls -lZ /DocutmentRootDir/index.html
+
+18. curl localhost:portnumber
+
+19. open browser or run curl from other machine
+
+20. If not accessible , Check and Open Port on Firewall
+
+21. After port added into firewall, try to access website again from browser or other machine
