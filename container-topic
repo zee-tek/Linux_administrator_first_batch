@@ -1,0 +1,109 @@
+Steps to specify only desired registry to pull images:
+
+IMPORTANT NOTE: IN EXAM This Step might already be done, So check first before doing it.
+
+            Check: 
+                   ls -l /home/user-name/.config/containers/registries.conf
+
+        If registries.conf already exists, Don't do registry Steps on Exam
+
+
+ 1) As root or user mkdir /home/linda/.config/containers
+ 
+ 2) As root cp /etc/containers/registries.conf /home/linda/.config/containers
+
+ 3) As root chown -R linda:linda /home/linda/.config/containers
+
+ 4) ssh to user linda
+
+ 5) podman info |grep -A5 registries
+
+ 6) vi /home/linda/.config/containers/registries.conf
+
+unqualified-search-registries = ["registry.access.redhat.com",]
+
+[[registry]]
+insecure = true
+blocked = false
+location = "registry.access.redhat.com"
+    
+
+save&quit
+
+7)  podman info |grep -A5 registries
+
+
+==========================================================================
+
+Image and Container:
+
+1. login into registry using
+   
+     Podman login
+
+2. download Containerfile from given link
+
+3. Build Image from Containerfile
+
+    podman build -t newimagename .
+
+              OR
+    podman build -t newimagename -f /home/linda/Containerfile
+
+    Verify image
+
+    Podman images
+
+4. Run a Container from that image
+
+    volume, Ports, 
+
+    podman run -d --name container-name -v /home/linda/web:/var/www -p Hostport:containerport                                                                        imagename
+
+5. access the website
+
+     curl localhost:Hostport
+
+     Try to access from browser or other machine using http://host-ip:hostport
+     
+6. If not accessible then open firewall port
+
+    firewall-cmd --add-port=hostport --permanent
+    firewall-cmd --reload
+    firewall-cmd --list-ports
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Make user a linger user to control Systemd service:
+
+
+Make User a linger User:
+------------------------
+loginctl show-user linda
+loginctl enable-linger linda
+loginctl show-user linda
+============================================================================
+
+Create Systemd service file for the container:
+--------------------------------------------
+mkdir -p /home/linda/.config/systemd/user
+
+cd /home/linda/.config/systemd/user
+
+podman generate systemd --name container-name --files --new
+
+ls
+
+systemctl --user daemon-reload
+podman stop container-name
+systemctl --user status container-container-name.service
+systemctl --user start container-container-name.service
+systemctl --user enable container-container-name.service
+podman ps
+systemctl --user stop container-container-name.service
+podman ps
+
+
+
+
+

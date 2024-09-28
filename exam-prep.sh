@@ -39,6 +39,7 @@ echo "RUNNING TASK 9 ......................."
 mkdir /share &>/dev/null
 userdel -r linda &>/dev/null
 useradd linda &>/dev/null
+echo "redhat" |passwd --stdin linda &>/dev/null
 userdel -r john &>/dev/null
 useradd -u 3020 -b /share -M john &>/dev/null
 
