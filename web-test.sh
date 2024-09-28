@@ -3,8 +3,11 @@
 
 container_chk=`curl localhost:8085 2>/dev/null`
 selinux_chk=`curl localhost:82 2>/dev/null`
-container_port=`firewall-cmd --list-ports |grep '8085'`
-selinux_port=`firewall-cmd --list-ports |grep '82'`
+firewall-cmd --list-ports |grep '8085' &>/dev/null
+container_port=$?
+firewall-cmd --list-ports |grep '82' &>/dev/null
+selinux_port=$?
+
 cd /share/john &>/dev/null
 df -h /share/john &>/dev/null
 mnt_st=$?
@@ -12,7 +15,7 @@ mnt_st=$?
 
 if [ "$container_chk" == "Hello From myweb1 Container" ];then
 
-     echo "Pass: Container is running"
+     echo "Pass: WebSite running inside container is accessible "
 
 else
 
@@ -23,7 +26,7 @@ fi
 
 if [ "$selinux_chk" == "Practicing RHCSA9" ];then
 
-     echo "Pass: Selinux is good, web content is showing"
+     echo "Pass: Selinux is good, WebSite hosting on VM is accessible"
 
 else
 
@@ -31,9 +34,9 @@ else
 fi
 
 
-if [ "$selinux_port" == "82"  ];then
+if [ $selinux_port -eq 0 ];then
 
-     echo "Pass: Selinux webpage Port is good."
+     echo "Pass: Selinux webserver Port is good."
 
 else
 
@@ -41,9 +44,9 @@ else
 fi
 
 
-if [ "$container_port" == "8085"  ];then
+if [ $container_port -eq 0 ];then
 
-     echo "Pass: Container webpage Port is good."
+     echo "Pass: Container webserver Port is good."
 
 else
 
@@ -54,7 +57,7 @@ fi
 
 if [ $mnt_st -eq 0  ];then
 
-     echo "filesystem is mounted"
+     echo "Pass: Autofs filesystem is mounted"
 
 else
 
