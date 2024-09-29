@@ -2,6 +2,7 @@
 
 
 # Need to delete group admins entry from sudoers file
+# change the Max days back to 9999
 
 if [ `id -u` != 0 ];then
 	echo ""
