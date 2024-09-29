@@ -77,7 +77,7 @@ echo "RUNNING TASK 12 ......................"
 sed -i '/^\/-/d' /etc/auto.master &>/dev/null
 sed -i '/\/rhome/d' /etc/auto.master &>/dev/null
 sed -i '/\/home/d' /etc/auto.misc &>/dev/null
-firewall-cmd --remove-port=82/tcp --permanent &>/dev/null
+firewall-cmd --remove-port={82/tcp,8085/tcp} --permanent &>/dev/null
 firewall-cmd --reload &>/dev/null
 dnf install tuned -y &>/dev/null
 systemctl start tuned &>/dev/null
@@ -94,17 +94,17 @@ su - student -c "rm -rf /home/student/.config/containers" &>/dev/null
 
 
 echo "RUNNING Final Task ..................."
-echo "Practicing RHCSA9" > /web1/index.html
+echo "Practicing RHCSA9" > /web1/index.html &>/dev/null
 echo "Hello From myweb1 Container" >/home/linda/web/html/index.html
-chown -R linda:linda /home/linda/web/html
+chown -R linda:linda /home/linda/web/html &>/dev/null
 find / -iname containerfile -type f -print 2>/dev/null -exec rm -rf {} \;
 echo
 echo -e "Exam Environment Setup Completed!\n"
 
-echo -e "Rebooting System.................."
-echo `openssl rand -base64 14`|passwd --stdin root &>/dev/null
+#echo -e "Rebooting System.................."
+#echo `openssl rand -base64 14`|passwd --stdin root &>/dev/null
 
-echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
+#echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
 
-shutdown -r now
+#shutdown -r now
 
