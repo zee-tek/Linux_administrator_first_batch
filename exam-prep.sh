@@ -4,6 +4,7 @@
 # Need to delete group admins entry from sudoers file
 # change the Max days back to 9999
 # clear cron log messages
+# clear swap and filesystems,partitions
 
 if [ `id -u` != 0 ];then
 	echo ""
