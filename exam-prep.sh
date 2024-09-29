@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+# Need to delete group admins entry from sudoers file
+
 if [ `id -u` != 0 ];then
 	echo ""
 	echo -e "\e[31m Failed: Please Run this Script as root\e[0m\n"
@@ -61,6 +63,7 @@ mkdir  /var/tmp/linda
 userdel -r natasha
 userdel -r harry
 userdel -r sarah
+groupdel admins
 echo "RUNNING TASK 11 ......................"
 dnf groupremove "RPM Development Tools" -y &>/dev/null
 dnf remove autofs -y &>/dev/null
