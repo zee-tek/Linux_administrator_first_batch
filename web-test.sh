@@ -7,6 +7,9 @@
    - Check if Container and VM webservers Ports are open on firewall or not
    - Check if autofs filesystem is mounted or not
   '
+ 
+# New Logics
+  # - New Logic "chage -l student|grep Maximum|awk -F ':' '{print $2}'|sed 's/ //g'" Pending
 
 ################################################################ 
 

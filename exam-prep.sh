@@ -1,11 +1,12 @@
 #!/bin/bash
 
 
-# Need to delete group admins entry from sudoers file
-# change the Max days back to 9999
-# clear cron log messages
+# Need to delete group admins entry from sudoers file (DONE)
+# change the Max days back to 9999 (DONE)
+# clear cron log messages (DONE)
 # clear swap and filesystems,partitions
-# remove /var/log/journal
+# remove /var/log/journal (DONE)
+# remove tar ball (DONE)
 
 if [ `id -u` != 0 ];then
 	echo ""
@@ -58,16 +59,26 @@ mkdir -p /home/linda/web/html
 chown -R linda:linda /home/linda/web
 touch /tmp/rh_file{1..10}.txt
 chown linda:linda /tmp/rh_file{1..10}.txt
-rm -rf /home/linda/.config/systemd
-rm -rf /home/linda/.config/containers
-rm -rf /tmp/files
+rm -rf /home/linda/.config/systemd &>/dev/null
+rm -rf /home/linda/.config/containers &>/dev/null
+rm -rf /tmp/files &>/dev/null
 mkdir /tmp/files
-rm -rf /var/tmp/linda
-mkdir  /var/tmp/linda
-userdel -r natasha
-userdel -r harry
-userdel -r sarah
-groupdel admins
+rm -rf /var/tmp/linda &>/dev/null
+mkdir  /var/tmp/linda 
+rm -rf /var/tmp/boo_logs
+rm -rf /var/tmp/string_output
+sed -i '/^Storage/s/persistent/volatile/' /etc/systemd/journald.conf
+sed -i '/^Storage/s/auto/volatile/' /etc/systemd/journald.conf
+systemctl restart systemd-journald
+echo >/var/log/messages
+echo > /var/log/audit/audit.log
+rm -rf /var/log/journal &>/dev/null
+userdel -r natasha &>/dev/null
+userdel -r harry &>/dev/null
+userdel -r sarah &>/dev/null
+sed -i '/^%admins/d' /etc/sudoers
+groupdel admins &>/dev/null
+sed -i '/^PASS_MAX_DAYS/s/90/9999/' /etc/login.defs
 echo "RUNNING TASK 11 ......................"
 dnf groupremove "RPM Development Tools" -y &>/dev/null
 dnf remove autofs -y &>/dev/null
@@ -94,10 +105,11 @@ su - student -c "rm -rf /home/student/.config/containers" &>/dev/null
 
 
 echo "RUNNING Final Task ..................."
-echo "Practicing RHCSA9" > /web1/index.html &>/dev/null
+echo "Practicing RHCSA9" > /web1/index.html 2>/dev/null
 echo "Hello From myweb1 Container" >/home/linda/web/html/index.html
 chown -R linda:linda /home/linda/web/html &>/dev/null
-find / -iname containerfile -type f -print 2>/dev/null -exec rm -rf {} \;
+find / -iname containerfile -type f -exec rm -rf {} \;
+find / -iname archive.tar.bz2 -delete
 echo
 echo -e "Exam Environment Setup Completed!\n"
 
