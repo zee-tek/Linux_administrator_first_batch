@@ -5,6 +5,7 @@
 # change the Max days back to 9999
 # clear cron log messages
 # clear swap and filesystems,partitions
+# remove /var/log/journal
 
 if [ `id -u` != 0 ];then
 	echo ""
