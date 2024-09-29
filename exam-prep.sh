@@ -58,6 +58,9 @@ rm -rf /tmp/files
 mkdir /tmp/files
 rm -rf /var/tmp/linda
 mkdir  /var/tmp/linda
+userdel -r natasha
+userdel -r harry
+userdel -r sarah
 echo "RUNNING TASK 11 ......................"
 dnf groupremove "RPM Development Tools" -y &>/dev/null
 dnf remove autofs -y &>/dev/null
@@ -91,10 +94,10 @@ find / -iname containerfile -type f -print 2>/dev/null -exec rm -rf {} \;
 echo
 echo -e "Exam Environment Setup Completed!\n"
 
-#echo -e "Rebooting System.................."
-#echo `openssl rand -base64 14`|passwd --stdin root &>/dev/null
+echo -e "Rebooting System.................."
+echo `openssl rand -base64 14`|passwd --stdin root &>/dev/null
 
-#echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
+echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
 
-#shutdown -r now
+shutdown -r now
 
