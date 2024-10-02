@@ -7,7 +7,9 @@
 # clear swap and filesystems,partitions
 # remove /var/log/journal (DONE)
 # remove tar ball (DONE)
-
+# Clean Repos
+# umask for natasha needs t obe removed
+# delete cron job for uswer harry
 if [ `id -u` != 0 ];then
 	echo ""
 	echo -e "\e[31m Failed: Please Run this Script as root\e[0m\n"
@@ -28,7 +30,7 @@ semanage port -d -t http_port_t 82 -p tcp &>/dev/null
 sed -i 's/^List.*/Listen 82/' /etc/httpd/conf/httpd.conf
 systemctl restart httpd &>/dev/null
 echo "RUNNING TASK 5 ......................."
-rm -rf /web1 &>/dev/null
+rm -rf /web1
 mkdir /web1
 
 
@@ -54,16 +56,16 @@ echo "redhat" |passwd --stdin linda &>/dev/null
 echo "redhat" |passwd --stdin john &>/dev/null
 echo "RUNNING TASK 10 ......................"
 mkdir /rhome &>/dev/null
-rm -rf /home/linda/web /tmp/files &>/dev/null
+rm -rf /home/linda/web /tmp/files
 mkdir -p /home/linda/web/html
 chown -R linda:linda /home/linda/web
 touch /tmp/rh_file{1..10}.txt
 chown linda:linda /tmp/rh_file{1..10}.txt
-rm -rf /home/linda/.config/systemd &>/dev/null
-rm -rf /home/linda/.config/containers &>/dev/null
-rm -rf /tmp/files &>/dev/null
+rm -rf /home/linda/.config/systemd
+rm -rf /home/linda/.config/containers
+rm -rf /tmp/files
 mkdir /tmp/files
-rm -rf /var/tmp/linda &>/dev/null
+rm -rf /var/tmp/linda
 mkdir  /var/tmp/linda 
 rm -rf /var/tmp/boo_logs
 rm -rf /var/tmp/string_output
@@ -72,7 +74,7 @@ sed -i '/^Storage/s/auto/volatile/' /etc/systemd/journald.conf
 systemctl restart systemd-journald
 echo >/var/log/messages
 echo > /var/log/audit/audit.log
-rm -rf /var/log/journal &>/dev/null
+rm -rf /var/log/journal
 userdel -r natasha &>/dev/null
 userdel -r harry &>/dev/null
 userdel -r sarah &>/dev/null
@@ -99,9 +101,9 @@ echo "RUNNING TASK 13 ......................"
 su - student -c "podman stop myweb1" &>/dev/null
 su - student -c "podman rm myweb1" &>/dev/null
 su - student -c "podman rmi webimage" -f &>/dev/null
-su - student -c "rm -rf /home/student/.config/systemd/user/con*" &>/dev/null
-su - student -c "rm -rf /home/student/.config/systemd" &>/dev/null
-su - student -c "rm -rf /home/student/.config/containers" &>/dev/null
+su - student -c "rm -rf /home/student/.config/systemd/user/con*"
+su - student -c "rm -rf /home/student/.config/systemd"
+su - student -c "rm -rf /home/student/.config/containers"
 
 
 echo "RUNNING Final Task ..................."
@@ -113,10 +115,10 @@ find / -iname archive.tar.bz2 -delete
 echo
 echo -e "Exam Environment Setup Completed!\n"
 
-echo -e "Rebooting System.................."
-echo `openssl rand -base64 14`|passwd --stdin root &>/dev/null
+#echo -e "Rebooting System.................."
+#echo `openssl rand -base64 14`|passwd --stdin root &>/dev/null
 
-echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
+#echo "/fake /fake_dir xfs defaults 0 0" >>/etc/fstab
 
-shutdown -r now
+#shutdown -r now
 
