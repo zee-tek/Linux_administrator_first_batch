@@ -41,6 +41,8 @@ echo "RUNNING TASK 7 ......................."
 #sed -i '0,/<Directory "\/var\/www">/s|<Directory "/var/www">|<Directory "/web1">|' /etc/httpd/conf/httpd.conf
 echo "Practicing RHCSA" >>/tmp/index.html
 mv /tmp/index.html /var/www/html
+echo "Hello WOrld" >>/tmp/file1
+mv /tmp/file1 /var/www/html
 
 echo "RUNNING TASK 8 ......................."
 systemctl restart httpd &>/dev/null
@@ -110,7 +112,8 @@ su - student -c "rm -rf /home/student/.config/containers"
 echo "RUNNING Final Task ..................."
 echo "Practicing RHCSA9" > /web1/index.html 2>/dev/null
 echo "Hello From myweb1 Container" >/home/linda/web/html/index.html
-#chown -R linda:linda /home/linda/web/html &>/dev/null
+chown -R linda:linda /home/linda/web/html &>/dev/null
+chmod 700 /home/linda/web/html/index.html
 find / -iname containerfile -type f -exec rm -rf {} \;
 find / -iname archive.tar.bz2 -delete
 echo
